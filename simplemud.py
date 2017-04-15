@@ -1,5 +1,4 @@
-#Samuel Wiswell
-"""
+"""    
 A simple Multi-User Dungeon (MUD) game. Players can talk to each other, examine
 their surroundings and move between rooms.
 
@@ -35,7 +34,7 @@ rooms = {
         "exits": { "inside": "Tavern" },
     }
 }
-classes = "Knight", "Samurai", "Rogue", "cleric", "Sorcerer", "Bard"
+
 # stores the players in the game
 players = {}
 
@@ -55,6 +54,7 @@ while True:
     # us up-to-date information
     mud.update()
 
+
     # go through any newly connected players
     for id in mud.get_new_players():
 
@@ -69,7 +69,9 @@ while True:
         }
 
         # send the new player a prompt for their name
-        mud.send_message(id,"What is your name? Type 'create' to create a new character.")
+        mud.send_message(id,"What is your name?")
+
+
 
     # go through any recently disconnected players
     for id in mud.get_disconnected_players():
@@ -97,7 +99,7 @@ while True:
         # if the player hasn't given their name yet, use this first command as their name
         if players[id]["name"] is None:
 
-            mud.send_message(id,"What is your name? Type 'create' to create a new character.")
+            players[id]["name"] = command
 
             # go through all the players in the game
             for pid,pl in players.items():
