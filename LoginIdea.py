@@ -51,14 +51,3 @@ if name.lower() == 'create':
 #prompt for password
 #if password = variable password log into game
 #if not, print wrong password, try again, disc
-['Jaiven', 'Ajac', '']
-Please enter a name or type 'create' to create a new character
-create
-Please name your new character.
-jaiven
-Traceback (most recent call last):
-  File "E:\JusamProject\JusamMud\LoginIdea.py", line 38, in <module>
-    getnewuser()
-  File "E:\JusamProject\JusamMud\LoginIdea.py", line 23, in getnewuser
-    useraccount.write(tempname)
-IOError: [Errno 0] Error
