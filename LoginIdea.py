@@ -1,13 +1,14 @@
 
-useraccount = open('accounts.txt', 'r+')
+useraccount = open('accounts.txt', 'r')
 registeredusers = useraccount.read().split('\n')
+useraccount.close()
 print registeredusers
 
 #The function to handle adding new users to accounts.txt which repeats if name is under 2 characters and checks to see if all alpha with no spaces.
 def getnewuser():
     nameExists = False
     tempname = raw_input('Please name your new character.\n')
-    tempname.capitalize()
+    tempname = tempname.capitalize()
     #iterate through each element and check to see if the user already exists
     for user in registeredusers:
         if user == tempname:
@@ -19,8 +20,10 @@ def getnewuser():
         if tempname.isalpha():
             #if the name does not exist
             if nameExists == False:
-                #write to the account file
-                useraccount.write(tempname)
+                #searches for name and if name isn't there writes name to file on next line
+                useraccount = open('accounts.txt','a')
+                useraccount.write(tempname + '\n')
+                useraccount.close()
             else:
                 #the name exists, so let our user know
                 print "Name exists. Please try another name."
@@ -37,7 +40,7 @@ name = raw_input("Please enter a name or type 'create' to create a new character
 if name.lower() == 'create':
     getnewuser()
 #loads name file.
-#searches for name and if name isn't there writes name to file on next line
+
 #prompts for a password
 #writes password to file after name
 #asks for password again
