@@ -1,3 +1,4 @@
+#Samuel Wiswell
 """
 A simple Multi-User Dungeon (MUD) game. Players can talk to each other, examine
 their surroundings and move between rooms.
