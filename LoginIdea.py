@@ -1,10 +1,15 @@
 #Login idea
 useraccount = open('accounts.txt', 'w')
+def getnewuser():
+    tempname = raw_input('Ok, please name your new character name.\n')
+    if len(tempname) >= 2:
+            useraccount.write(tempname)
+    else:
+        print "Name must be longer then two characters. Please try again.\n"
+        getnewuser()
 name = raw_input("Please enter a name or type 'create' to create a new character\n")
 if name.lower() == 'create':
-    tempname = raw_input('Ok, please name your new character name.\n')
-    if tempname is not [0]:
-        useraccount.write(tempname)
+    getnewuser()
 #loads name file.
 #searches for name and if name isn't there writes name to file on next line
 #prompts for a password
