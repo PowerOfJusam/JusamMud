@@ -1,12 +1,14 @@
-#Login idea
-useraccount = open('accounts.txt', 'w')
+#The function to handle adding new users to accounts.txt which repeats if name is under 2 characters and checks to see if all alpha with no spaces.
 def getnewuser():
-    tempname = raw_input('Ok, please name your new character name.\n')
-    if len(tempname) >= 2:
-            useraccount.write(tempname)
+    useraccount = open('accounts.txt', 'w')
+    tempname = raw_input('Please name your new character.\n')
+    if len(tempname) > 2 and tempname.isalpha() and not tempname.isspace():
+            useraccount.write(tempname.capitalize())
     else:
-        print "Name must be longer then two characters. Please try again.\n"
+        print "Name must be greater then two characters and contain no numbers, symbols or spaces.\n"
         getnewuser()
+
+#Character login where you get the option to enter an already created character or type create to run the function getnewuser
 name = raw_input("Please enter a name or type 'create' to create a new character\n")
 if name.lower() == 'create':
     getnewuser()
