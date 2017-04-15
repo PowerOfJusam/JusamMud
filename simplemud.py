@@ -54,7 +54,6 @@ while True:
     # us up-to-date information
     mud.update()
 
-
     # go through any newly connected players
     for id in mud.get_new_players():
 
@@ -70,8 +69,6 @@ while True:
 
         # send the new player a prompt for their name
         mud.send_message(id,"What is your name? Type 'create' to create a new character.")
-
-
 
     # go through any recently disconnected players
     for id in mud.get_disconnected_players():
