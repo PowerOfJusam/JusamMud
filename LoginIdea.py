@@ -1,11 +1,12 @@
 
-useraccount = open('accounts.txt', 'r')
-registeredusers = useraccount.read().split('\n')
-useraccount.close()
-print registeredusers
-
 #The function to handle adding new users to accounts.txt which repeats if name is under 2 characters and checks to see if all alpha with no spaces.
 def getnewuser():
+#this has to be in the function and not outside it. I had a dream about this bug and fixed it in my dream. So when it is outside the function it will
+#add the users when the server starts but won't load more users into registereduers when a new user is created and thus create duplicates if the same name is entered after the read.
+    useraccount = open('accounts.txt', 'r')
+    registeredusers = useraccount.read().split('\n')
+    useraccount.close()
+
     nameExists = False
     tempname = raw_input('Please name your new character.\n')
     tempname = tempname.capitalize()
