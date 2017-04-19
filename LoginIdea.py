@@ -55,10 +55,18 @@ def verifyaccounts(name):
     checkaccounts = open('accounts.txt', 'r')
     loadedcheckaccounts = checkaccounts.read().split('\n')
     checkaccounts.close()
+    print  "These are used for a later variable that works.\n"
+    print loadedcheckaccounts
+    loadednames = loadedcheckaccounts
+    loadednames.split(':')
+    print "testing" +  loadednames
+    loadednames = [i.split(':', 0) for i in loadednames]
+    print "I need these seperated with the name and then the PW after the :.\n"
+    print loadednames
 #I need to search for user name in loadedcheckaccounts but the each list is like Jaiven:passwordtest. I just need it to match the part before the : with the name given to be true and move on.
 #wildcard * doesn't seem to work.
-    for user in loadedcheckaccounts:
-        if user == name + ':' + *:
+    for user in loadednames:
+        if user == name:
             checkname = True
             break
     if checkname == False:

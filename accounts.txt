@@ -1,3 +1,3 @@
-Jaiven:passwordtest
-Ajac:testmassword
-Ardsheal:jjpoptarts
+Mike:passwordtest
+Helga:testmassword
+Dorathy:testwordspass
