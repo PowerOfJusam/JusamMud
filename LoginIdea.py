@@ -47,7 +47,7 @@ def getnewuser():
 #Creating a function to verify user account and password
 def verifyaccounts(name):
 #note sure if I really need this password = None part.
-    password = None
+    checkname = False
     userhasbeenverified = False
 #making sure the name is still capitalized just incase.
     name = name.capitalize()
@@ -55,7 +55,21 @@ def verifyaccounts(name):
     checkaccounts = open('accounts.txt', 'r')
     loadedcheckaccounts = checkaccounts.read().split('\n')
     checkaccounts.close()
-    password = raw_input('Welcome back to Jusam Mud ' + name + '. ' + 'Please type your password to log into the mud.\n')
+#I need to search for user name in loadedcheckaccounts but the each list is like Jaiven:passwordtest. I just need it to match the part before the : with the name given to be true and move on.
+#wildcard * doesn't seem to work.
+    for user in loadedcheckaccounts:
+        if user == name + ':' + *:
+            checkname = True
+            break
+    if checkname == False:
+        print 'Sorry, there is no character by that name or the password is incorrect. Please try again.'
+        name = raw_input("Please enter a name or type 'create' to create a new character.\n")
+        if name.lower() == 'create':
+            getnewuser()
+        else:
+            verifyaccounts(name)
+    if checkname == True:
+        password = raw_input('Welcome back to Jusam Mud ' + name + '. ' + 'Please type your password to log into the mud.\n')
 #loading name, :, and password into a variable to later check against the array name and password.
     verifieduser = name + ':' + password
 #This is where we check the name and password variable to the name and password array.
@@ -74,6 +88,9 @@ def verifyaccounts(name):
 
 #creating the function to get new password upon character creation. Passed tempname to getnewpassword
 def getnewpassword(tempname):
+    passwordPassed = False
+    passwordComplete = False
+    newpassword = raw_input('Please enter a password for ' + tempname + '.' + ' Please note that you cannot use spaces when creating a password.\n')
 #makes sure there are no spaces in password.
     if ' ' in newpassword:
         print 'Sorry but your password has a space in it. Remember, you cannot have spaces in your password. Try again.\n'
