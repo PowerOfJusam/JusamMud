@@ -58,8 +58,6 @@ def verifyaccounts(name):
     print  "These are used for a later variable that works.\n"
     print loadedcheckaccounts
     loadednames = loadedcheckaccounts
-    loadednames.split(':')
-    print "testing" +  loadednames
     loadednames = [i.split(':', 0) for i in loadednames]
     print "I need these seperated with the name and then the PW after the :.\n"
     print loadednames
