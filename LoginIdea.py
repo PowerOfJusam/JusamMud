@@ -48,6 +48,7 @@ def getnewuser():
 def getnewpassword(tempname):
     passwordPassed = False
     passwordComplete = False
+    passwordStored = False
     newpassword = raw_input('Please enter a password for ' + tempname + '.' + ' Please note that you cannot use spaces when creating a password.\n')
 #makes sure there are no spaces in password.
     if ' ' in newpassword:
@@ -67,12 +68,14 @@ def getnewpassword(tempname):
         else:
             print "passwords don't match. Please try again"
             getnewpassword(tempname)
-#attempts to write password after username and :. works but gives an IO error.
+#attempts to write password after username and now works due to closing it outside the orig if statement.
     if passwordComplete == True:
         settingpassword = open('accounts.txt','r+')
         for line in settingpassword:
             if tempname in line:
                 settingpassword.write(setuserpassword + '\n')
+                passwordStored = True
+    if passwordStored == True:
                 settingpassword.close()
 
 #Character login where you get the option to enter an already created character or type create to run the function getnewuser
