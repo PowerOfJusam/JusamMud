@@ -25,7 +25,7 @@ def getnewuser():
                 #searches for name and if name isn't there writes name to file on next line
                 useraccount = open('accounts.txt','a')
                 #adds the : between name and password for later file searching to verify user accounts.
-                useraccount.write(tempname + ":" + '\n')
+                useraccount.write(tempname + ":")
                 useraccount.close()
                 namePassed = True
                 print "Welcome to Jusam Mud " + tempname
@@ -44,10 +44,12 @@ def getnewuser():
         getnewuser()
     if namePassed == True:
         getnewpassword(tempname)
+#creating the function to get new password upon character creation. Passed tempname to getnewpassword
 def getnewpassword(tempname):
     passwordPassed = False
     passwordComplete = False
     newpassword = raw_input('Please enter a password for ' + tempname + '.' + ' Please note that you cannot use spaces when creating a password.\n')
+#makes sure there are no spaces in password.
     if ' ' in newpassword:
         print 'Sorry but your password has a space in it. Remember, you cannot have spaces in your password. Try again.\n'
         getnewpassword(tempname)
@@ -55,17 +57,23 @@ def getnewpassword(tempname):
     else:
         print "Password accepted.\n"
         passwordPassed = True
+#asks for password input again and checks to see if both password variables match.
     if passwordPassed == True:
         retypedpassword = raw_input('Please enter your password again.\n')
         if newpassword == retypedpassword:
             print "User account created."
-            retypedpassword = setuserpassword
+            setuserpassword = retypedpassword
             passwordComplete = True
         else:
             print "passwords don't match. Please try again"
             getnewpassword(tempname)
-    if passwordComplete = True:
-        
+    if passwordComplete == True:
+        settingpassword = open('accounts.txt','r+')
+        for line in settingpassword:
+            if tempname in line:
+                settingpassword.write(setuserpassword + '\n')
+                settingpassword.close()
+
 #Character login where you get the option to enter an already created character or type create to run the function getnewuser
 name = raw_input("Please enter a name or type 'create' to create a new character\n")
 if name.lower() == 'create':
