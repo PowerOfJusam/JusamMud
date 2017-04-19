@@ -44,12 +44,36 @@ def getnewuser():
         getnewuser()
     if namePassed == True:
         getnewpassword(tempname)
+#Creating a function to verify user account and password
+def verifyaccounts(name):
+#note sure if I really need this password = None part.
+    password = None
+    userhasbeenverified = False
+#making sure the name is still capitalized just incase.
+    name = name.capitalize()
+#Loading the accounts into an array for later referencing
+    checkaccounts = open('accounts.txt', 'r')
+    loadedcheckaccounts = checkaccounts.read().split('\n')
+    checkaccounts.close()
+    password = raw_input('Welcome back to Jusam Mud ' + name + '. ' + 'Please type your password to log into the mud.\n')
+#loading name, :, and password into a variable to later check against the array name and password.
+    verifieduser = name + ':' + password
+#This is where we check the name and password variable to the name and password array.
+    for checkverifieduser in loadedcheckaccounts:
+         if verifieduser == checkverifieduser:
+             print 'we got your id!'
+             userhasbeenverified = True
+#If they don't match try again.
+    if userhasbeenverified == False:
+        print 'Sorry, there is no character by that name or the password is incorrect. Please try again.'
+        name = raw_input("Please enter a name or type 'create' to create a new character.\n")
+        if name.lower() == 'create':
+            getnewuser()
+        else:
+            verifyaccounts(name)
+
 #creating the function to get new password upon character creation. Passed tempname to getnewpassword
 def getnewpassword(tempname):
-    passwordPassed = False
-    passwordComplete = False
-    passwordStored = False
-    newpassword = raw_input('Please enter a password for ' + tempname + '.' + ' Please note that you cannot use spaces when creating a password.\n')
 #makes sure there are no spaces in password.
     if ' ' in newpassword:
         print 'Sorry but your password has a space in it. Remember, you cannot have spaces in your password. Try again.\n'
@@ -79,21 +103,8 @@ def getnewpassword(tempname):
                 settingpassword.close()
 
 #Character login where you get the option to enter an already created character or type create to run the function getnewuser
-name = raw_input("Please enter a name or type 'create' to create a new character\n")
+name = raw_input("Please enter a name or type 'create' to create a new character.\n")
 if name.lower() == 'create':
     getnewuser()
-#loads name file.
-
-#prompts for a password
-#writes password to file after name
-#asks for password again
-#looks up name after tempname [search for name in file followed by:] for password after name
-#if password = after tempname pw then creates character
-
-#login with a character already created
-
-#if name found move to request password
-#load all text after name[:] search to variable password
-#prompt for password
-#if password = variable password log into game
-#if not, print wrong password, try again, disc
+else:
+    verifyaccounts(name)
