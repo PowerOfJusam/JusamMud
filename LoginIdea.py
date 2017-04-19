@@ -58,7 +58,7 @@ def verifyaccounts(name):
     print  "These are used for a later variable that works.\n"
     print loadedcheckaccounts
     loadednames = loadedcheckaccounts
-    loadednames = [i.split(':', 0) for i in loadednames]
+    loadednames = [i.split(':')[0] for i in loadednames]
     print "I need these seperated with the name and then the PW after the :.\n"
     print loadednames
 #I need to search for user name in loadedcheckaccounts but the each list is like Jaiven:passwordtest. I just need it to match the part before the : with the name given to be true and move on.
