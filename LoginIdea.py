@@ -67,6 +67,7 @@ def getnewpassword(tempname):
         else:
             print "passwords don't match. Please try again"
             getnewpassword(tempname)
+#attempts to write password after username and :. works but gives an IO error.
     if passwordComplete == True:
         settingpassword = open('accounts.txt','r+')
         for line in settingpassword:
